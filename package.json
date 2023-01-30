@@ -1,0 +1,73 @@
+{
+  "name": "JobFlow",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "NODE_ENV=production nodemon ./server/server.js",
+    "build": "NODE_ENV=production webpack",
+    "dev": "concurrently \"cross-env NODE_ENV=development webpack-dev-server --open --hot \" \"nodemon ./server/server.js\""
+  },
+  "author": "Mia Gussen, Danny Zheng, Jason Hwang, Jonathan Wong",
+  "license": "",
+  "dependencies": {
+    "ajv": "^8.12.0",
+    "axios": "^1.2.1",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "pg": "^8.8.0",
+    "react": "^17.0.2",
+    "react-chartjs-2": "^4.3.1",
+    "react-dom": "^17.0.2",
+    "react-hot-loader": "^4.13.1",
+    "react-router": "^6.4.4",
+    "react-router-dom": "^6.4.4",
+    "sass": "^1.56.2"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "server/data/*",
+      "client/*"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.5",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-react": "^7.18.6",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "babel-loader": "^9.1.0",
+    "concurrently": "^7.6.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.7.2",
+    "dotenv": "^16.0.3",
+    "eslint": "^8.29.0",
+    "eslint-plugin-react": "^7.31.11",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "nodemon": "^2.0.20",
+    "sass-loader": "^13.2.0",
+    "style-loader": "^3.3.1",
+    "ts-jest": "^29.0.3",
+    "ts-loader": "^9.4.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.3",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "verbose": true,
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    },
+    "preset": "ts-jest",
+    "moduleNameMapper": {
+      "\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/mocks/fileMock.js",
+      "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js"
+    }
+  }
+}
