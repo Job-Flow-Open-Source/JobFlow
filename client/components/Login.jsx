@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 const Login = (props) => {
+  useEffect(()=> {
+    props.showNav(false)
+  },[])
   return (
     <div className="loginPage">
       <div className="loginBox">
@@ -9,7 +12,7 @@ const Login = (props) => {
           <input className="formInfo" id="password" name="password" type="password" placeholder="Password"></input>
           <input className="loginBtn" type="submit" value="Login"></input>
         </form>
-        <a href="signup">Sign Up</a>
+        <a href="/signup">Sign Up</a>
       </div>
     </div>
   )
