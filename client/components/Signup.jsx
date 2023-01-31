@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const Signup = (props) => {
+  useEffect(()=> {
+    props.showNav(false)
+  },[])
   return (
     <div className="signupPage">
       <div className="signupBox">

@@ -19,19 +19,19 @@ function Navbar(props) {
               value='ApplicationView'
               style={({ active }) => (active ? active : undefined)}
             >
-              Crawl
+              Total Apps
             </NavLink>
           </li>
           <li>
             <NavLink
-              to='/about'
-              value='About'
+              to='/'
+              value='Login'
               style={({ active }) => (active ? active : undefined)}
             >
-              About
+              Logout
             </NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink
               to='/demo'
               value='Demo'
@@ -57,7 +57,7 @@ function Navbar(props) {
             >
               Team
             </NavLink>
-          </li>
+          </li> */}
         </ul>
       </div>
     </nav>

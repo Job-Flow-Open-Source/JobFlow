@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 const Login = (props) => {
+  useEffect(()=> {
+    props.showNav(false)
+  },[])
   return (
     <div className="loginPage">
       <div className="loginBox">
