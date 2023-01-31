@@ -18,7 +18,7 @@ export const userController = {
       const hashedPassword = await bcrypt.hash(password, 10);
       const insertQuery = `INSERT INTO users (first_name, last_name, username, password) VALUES ($1, $2, $3, $4) RETURNING *`;
       const newUser = await query(insertQuery, [first_name, last_name, username, hashedPassword]);
-      res.locals.newUser = newUser.rows;
+      res.locals.newUser = newUser.rows[0];
       return next();
     } catch (error: unknown) {
         return next({
