@@ -18,7 +18,7 @@ CREATE TABLE applications (
   "user_id" int REFERENCES users(_id) ON DELETE CASCADE,
   "resume_id" int REFERENCES resumes(_id) ON DELETE CASCADE,
   "coverletter_status" varchar default 'No Cover Letter',
-  "progress_status" varchar NOT NULL,
+  "progress_status" int NOT NULL,
   "date_submitted" DATE default current_date,
   "submission_method" varchar,
   "company" varchar NOT NULL,
