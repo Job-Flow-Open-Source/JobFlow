@@ -6,6 +6,13 @@ CREATE TABLE users (
   "password" varchar NOT NULL
 );
 
+CREATE TABLE resumes (
+  "_id" serial PRIMARY KEY,
+  "user_id" int REFERENCES users(_id) ON DELETE CASCADE,
+  "success_rate" int DEFAULT 0,
+  "resume_name" varchar NOT NULL
+);
+
 CREATE TABLE applications (
   "_id" serial PRIMARY KEY,
   "user_id" int REFERENCES users(_id) ON DELETE CASCADE,
@@ -16,11 +23,4 @@ CREATE TABLE applications (
   "submission_method" varchar,
   "company" varchar NOT NULL,
   "job_title" varchar
-);
-
-CREATE TABLE resumes (
-  "_id" serial PRIMARY KEY,
-  "user_id" int REFERENCES users(_id) ON DELETE CASCADE,
-  "success_rate" int DEFAULT 0,
-  "resume_name" varchar NOT NULL
 );
