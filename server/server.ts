@@ -6,6 +6,8 @@ import { ServerError } from './types';
 
 // Import Routers
 import userRouter from './routes/userRouter';
+import resumeRouter from './routes/resumeRouter';
+import applicationRouter from './routes/applicationRouter';
 
 const app = express();
 
@@ -23,8 +25,10 @@ app.use(cors(corsOptions));
 
 app.use(express.static(path.resolve(__dirname, '../client')));
 
-// Mount imported route handlers to specific routers 
+// Mount imported route handlers to specific routers
 app.use('/user', userRouter);
+app.use('/resume', resumeRouter);
+app.use('/application', applicationRouter);
 
 app.use((req: Request, res: Response) =>
   res.status(404).send('The requested page could not be found.')
