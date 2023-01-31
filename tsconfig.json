@@ -7,14 +7,14 @@
     "lib": ["dom", "es2015", "es2016", "es2017", "es2021"],
     "allowJs": true,
     "sourceMap": true,
-    "outDir": "./dist",
+    "outDir": "./build",
     "strict": true,
     "moduleResolution": "node",
     "removeComments": true,
     "noEmit": false,
     "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true
   },
-  "include": ["src/**/*", "server/**/*"]
+  "include": ["src/**/*", "server/**/*"],
+  "exclude": ["node_modules"]
 }
-
-// "images-png.d.ts"
