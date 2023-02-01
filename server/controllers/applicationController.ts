@@ -31,13 +31,17 @@ export const applicationController = {
       link,
       user_id,
     } = req.body;
-    const resumeResult = await query('SELECT _id FROM resumes WHERE user_id = $1, resume_name = $2', [user_id, resume_name]);
+    const resumeResult = await query(
+      'SELECT _id FROM resumes WHERE user_id = $1 AND resume_name = $2',
+      [user_id, resume_name]
+    );
     const resume = resumeResult.rows[0];
     if (!resume) {
       return next({
         log: 'Error occurred in addApplication middleware: resume with specified name not found.',
         status: 409,
-        message: 'Resume with specified name is not found in user\'s saved resumes.'
+        message:
+          "Resume with specified name is not found in user's saved resumes.",
       });
     }
     await query('BEGIN', []);
@@ -131,8 +135,9 @@ export const applicationController = {
       const successfulApplications = rows.reduce((acc, { progress_status }) => {
         return progress_status >= 20 ? acc + 1 : acc;
       }, 0);
-      const successRate =
-        Math.round((successfulApplications / totalApplications) * 100);
+      const successRate = Math.round(
+        (successfulApplications / totalApplications) * 100
+      );
       const updateSuccessRateQuery = `UPDATE resumes SET success_rate = ${successRate} WHERE _id = $1`;
       await query(updateSuccessRateQuery, [resume_id]);
       await query('COMMIT;', []);
@@ -146,4 +151,3 @@ export const applicationController = {
     }
   },
 };
-

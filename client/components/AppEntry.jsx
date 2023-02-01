@@ -16,13 +16,14 @@ const AppEntry = (props) => {
       <td> {props.index + 1} </td>
       <td> {props.appInfo.company} </td>
       <td> {props.appInfo.job_title} </td>
-      <td> {props.appInfo.link} </td>
+      <td>
+        <a href={props.appInfo.link}>Link</a>
+      </td>
       <td> {props.appInfo.submission_method} </td>
       <td> {props.appInfo.date_submitted} </td>
       <td> {props.appInfo.resume_id} </td>
       <td> {props.appInfo.cover_letter_status} </td>
       <td>
-        {' '}
         <progress
           id='file'
           max='100'

@@ -11,14 +11,14 @@ router.get(
 router.post(
   '/',
   applicationController.addApplication,
-  applicationController.updateResumeSuccessRate,
+  // applicationController.updateResumeSuccessRate,
   (req: Request, res: Response) => res.status(201).json(res.locals.newApplication)
 );
 
 router.patch(
   '/',
   applicationController.updateApplication,
-  applicationController.updateResumeSuccessRate,
+  // applicationController.updateResumeSuccessRate,
   (req: Request, res: Response) => res.status(200).json(res.locals.updatedApplication)
 );
 

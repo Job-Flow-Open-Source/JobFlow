@@ -12,13 +12,15 @@ const ApplicationView = (props) => {
   //   const [visible, setVisible] = useState('');
   console.log('this is userInfo', props.userInfo);
 
-  // Set up nav bar
   useEffect(() => {
     props.showNav(true);
     console.log(props.userInfo);
+    refreshApps();
+  }, []);
 
+  function refreshApps() {
     axios
-      .get(`http://localhost:3000/user/${props.userInfo._id}`)
+      .get(`http://localhost:3000/application/${props.userInfo._id}`)
       .then((res) => {
         console.log('data', res.data);
         setAppInfo(res.data);
@@ -26,7 +28,7 @@ const ApplicationView = (props) => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }
 
   // const showModal = (input) => {
   //     setShow(true);
@@ -105,7 +107,7 @@ const ApplicationView = (props) => {
             <td> Senior Software Developer </td>
             <td> Link </td>
             <td> External Recruiter </td>
-            <td> 1/31/23 </td>
+            <td> 2023-01-31 </td>
             <td> Resume A </td>
             <td> No Cover Letter </td>
             <td>
@@ -123,7 +125,7 @@ const ApplicationView = (props) => {
             <td> Full Stack Engineer </td>
             <td> Link </td>
             <td> Website </td>
-            <td> 1/31/23 </td>
+            <td> 2023-01-31 </td>
             <td> Resume A </td>
             <td> Cover Letter </td>
             <td>
@@ -141,7 +143,7 @@ const ApplicationView = (props) => {
             <td> Back End Developer </td>
             <td> Link </td>
             <td> Internal Recruiter </td>
-            <td> 1/31/23 </td>
+            <td> 2023-01-31 </td>
             <td> Resume B </td>
             <td> No Cover Letter </td>
             <td>
@@ -166,6 +168,7 @@ const ApplicationView = (props) => {
         id={modalState}
         info={appInfo[idx]}
         userInfo={props.userInfo}
+        refreshApps={refreshApps}
       />
     </div>
   );
