@@ -11,7 +11,7 @@ CREATE TABLE resumes (
   "user_id" int REFERENCES users(_id) ON DELETE CASCADE,
   "success_rate" int DEFAULT 0,
   "resume_name" varchar NOT NULL,
-  UNIQUE (_id, user_id, resume_name);
+  UNIQUE (_id, user_id, resume_name)
 );
 
 CREATE TABLE applications (
@@ -26,5 +26,5 @@ CREATE TABLE applications (
   "submission_method" varchar,
   "company" varchar NOT NULL,
   "job_title" varchar,
-  FOREIGN KEY (user_id, resume_id, resume_name) REFERENCES resumes(user_id, _id, resume_name) ON DELETE CASCADE;
+  FOREIGN KEY (user_id, resume_id, resume_name) REFERENCES resumes(user_id, _id, resume_name) ON DELETE CASCADE
 );
