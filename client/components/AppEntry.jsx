@@ -15,25 +15,34 @@ const AppEntry = (props) => {
     return (
         <tr> 
             <td>
-                #
+                {props.index + 1}
             </td>
             <td>
-                Company
+                {props.appInfo.company}
             </td>
             <td>
-                Link
+                {props.appInfo.job_title}
             </td>
             <td>
-                Date
+                {props.appInfo.link}
             </td>
             <td>
-                Resume A
+                {props.appInfo.submission_method}
             </td>
             <td>
-                <progress id="file" max="100" value="70"> text </progress>
+                {props.appInfo.date_submitted}
             </td>
             <td>
-                <button id='num' onClick={()=>{props.modalClick();props.setIndex(props.index)}}>edit</button>
+                {props.appInfo.resume_id}
+            </td>
+            <td>
+                {props.appInfo.cover_letter_status}
+            </td>
+            <td>
+                <progress id="file" max="100" value={props.appInfo.progress_status}></progress>
+            </td>
+            <td>
+                <button id={props.appInfo._id} onClick={()=>{props.showModal(edit);props.setIndex(props.index)}}>edit</button>
             </td>
         </tr>   
     )
