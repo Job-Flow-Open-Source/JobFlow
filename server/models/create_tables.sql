@@ -10,17 +10,21 @@ CREATE TABLE resumes (
   "_id" serial PRIMARY KEY,
   "user_id" int REFERENCES users(_id) ON DELETE CASCADE,
   "success_rate" int DEFAULT 0,
-  "resume_name" varchar NOT NULL
+  "resume_name" varchar NOT NULL,
+  UNIQUE (_id, user_id, resume_name);
 );
 
 CREATE TABLE applications (
   "_id" serial PRIMARY KEY,
-  "user_id" int REFERENCES users(_id) ON DELETE CASCADE,
-  "resume_id" int REFERENCES resumes(_id) ON DELETE CASCADE,
-  "coverletter_status" varchar default 'No Cover Letter',
-  "progress_status" int NOT NULL,
-  "date_submitted" DATE default current_date,
+  "user_id" int,
+  "resume_id" int,
+  "resume_name" varchar, 
+  "link": varchar,
+  "coverletter_status" varchar DEFAULT 'No Cover Letter',
+  "progress_status" int DEFAULT 0,
+  "date_submitted" DATE DEFAULT current_date,
   "submission_method" varchar,
   "company" varchar NOT NULL,
-  "job_title" varchar
+  "job_title" varchar,
+  FOREIGN KEY (user_id, resume_id, resume_name) REFERENCES resumes(user_id, _id, resume_name) ON DELETE CASCADE;
 );
