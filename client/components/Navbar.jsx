@@ -12,17 +12,25 @@ function Navbar(props) {
         </Link>
       </div> */}
       <div>
-        <ul>
-        <li>
+        <span className='navPaths'>
             <NavLink
               to='/applicationView'
               value='ApplicationView'
               style={({ active }) => (active ? active : undefined)}
             >
-              Total Apps
+              Applications
             </NavLink>
-          </li>
-          <li>
+          </span>
+          <span className='navPaths'>
+            <NavLink
+              to='/Resume'
+              value='Resumes'
+              style={({ active }) => (active ? active : undefined)}
+            >
+              Resumes
+            </NavLink>
+          </span>
+          <span className='navPaths'>
             <NavLink
               to='/'
               value='Login'
@@ -30,35 +38,7 @@ function Navbar(props) {
             >
               Logout
             </NavLink>
-          </li>
-          {/* <li>
-            <NavLink
-              to='/demo'
-              value='Demo'
-              style={({ active }) => (active ? active : undefined)}
-            >
-              Demo Server
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to='/demo-client'
-              value='DemoClient'
-              style={({ active }) => (active ? active : undefined)}
-            >
-              Demo Client
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to='/team'
-              value='team'
-              style={({ active }) => (active ? active : undefined)}
-            >
-              Team
-            </NavLink>
-          </li> */}
-        </ul>
+          </span>
       </div>
     </nav>
   );
