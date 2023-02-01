@@ -31,7 +31,7 @@ export const applicationController = {
       link,
       user_id,
     } = req.body;
-    const resumeResult = await query('SELECT _id FROM resumes WHERE user_id = $1, resume_name = $2', [user_id, resume_name]);
+    const resumeResult = await query('SELECT _id FROM resumes WHERE user_id = $1 AND resume_name = $2', [user_id, resume_name]);
     const resume = resumeResult.rows[0];
     if (!resume) {
       return next({
@@ -91,7 +91,7 @@ export const applicationController = {
       progress_status,
       company,
       job_title,
-      link) = ($1, $2, $3, $4, $5, $6, $7) WHERE _id = $10 RETURNING *`;
+      link) = ($1, $2, $3, $4, $5, $6, $7) WHERE _id = $8 RETURNING *`;
     try {
       const { rows } = await query(updateApplicationQuery, [
         coverletter_status,
@@ -117,7 +117,10 @@ export const applicationController = {
     res: Response,
     next: NextFunction
   ) => {
-    const { resume_id } = req.body;
+    const resume_id =
+      res.locals.updatedApplication ?
+      res.locals.updatedApplication.resume_id :
+      res.locals.newApplication.resume_id;
     try {
       const applicationQuery =
         'SELECT progress_status FROM applications WHERE resume_id = $1';

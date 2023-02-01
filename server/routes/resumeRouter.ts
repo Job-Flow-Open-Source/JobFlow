@@ -8,4 +8,10 @@ router.get(
   (req: Request, res: Response) => res.status(200).json(res.locals.resumes)
 );
 
+router.post(
+  '/',
+  resumeController.addResume,
+  (req: Request, res: Response) => res.status(201).json(res.locals.newResume)
+);
+
 export default router;
