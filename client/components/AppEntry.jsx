@@ -2,7 +2,6 @@ import React, { useState} from 'react';
 import Modal from './Modal';
 
 const AppEntry = (props) => {
-    const [showModal, setShowModal] = useState('none');
     
     /*
         0 = started application
@@ -13,11 +12,6 @@ const AppEntry = (props) => {
         100 = offer 
             (accept or rejected)
     */
-
-    function handleClick(event){
-        setShowModal('block')
-        console.log('edit click')
-    }
 
     return (
         <tr> 
@@ -30,8 +24,13 @@ const AppEntry = (props) => {
             <td> {props.appInfo.resume_id} </td>
             <td> {props.appInfo.cover_letter_status} </td>
             <td> <progress id="file" max="100" value={props.appInfo.progress_status}></progress> </td>
-            <td> <button id={props.appInfo._id} onClick={handleClick}>edit</button> </td>
-            {/* <Modal style={{display:showModal}}/> */}
+            <td> <button onClick={(e) => {props.setShow(true); console.log('edit clicked')}}>edit</button> </td>
+            <Modal 
+                onClose={() => { return props.setShow(false);}}
+                show={props.show}
+                closeModal={() => {setShowEdit(false)}}
+                id='editModal'
+            />
         </tr>   
     )
 }

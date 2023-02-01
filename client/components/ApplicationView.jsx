@@ -5,7 +5,7 @@ import Modal from './Modal';
 import axios from 'axios';
 
 const ApplicationView = (props) => {
-    const [ appInfo, setAppInfo ] = useState([])
+    const [ appInfo, setAppInfo ] = useState(['a']) // insert a string to test 
     const [modalState, setModalState] = useState('')
     const [show, setShow] = useState(false);
     const [visible, setVisible] = useState('');
@@ -33,8 +33,10 @@ const ApplicationView = (props) => {
     const arrOfApps = [];
     for (let i = 0; i < appInfo.length; i++){
         arrOfApps.push(<AppEntry 
-            // modalClick={showModal} 
             index={i} 
+            setShow={setShow}
+            setVisible={setVisible}
+            snow={show}
             /*need to pass in entry at index i */
             appInfo={appInfo[i]}
             setIndex={() => {setIndex}}
@@ -90,7 +92,7 @@ const ApplicationView = (props) => {
 
     return (
         <div className='appContainer'>
-            <button onClick={(e) => {setShow(true); setVisible('visible'); console.log('clicked')}}>Add Application</button>
+            <button onClick={(e) => {setShow(true); console.log('add clicked')}}>Add Application</button>
             <div className='appTableContainer'>
                 <table className='appTable'>
                     <tr className='appHeaderRow'> 
@@ -145,22 +147,11 @@ const ApplicationView = (props) => {
                 </table>    
             </div>
               <Modal
-                onClose={() => { return setShow(false); setVisible('');}}
+                onClose={() => { return setShow(false)}}
                 show={show}
                 closeModal={() => {setShow(false)}}
-                // info = {props.entries[i]}
+                id='addModal'
             />
-                
-                {/* <button id="myBtn" onClick={() => {modal.style.display = "block"}}>Open Modal</button>
-                <div id="myModal" class="modal" onClick={(event) => {if (event.target == modal) {
-                    modal.style.display = "none";
-                }}}>
-                    <div class="modal-content">
-                        <span class="close" onClick={() => {modal.style.display = "none"}}>&times;</span>
-                        <p>Some text in the Modal..</p>
-                    </div>
-                </div> */}
-
         </div>
     )
 }

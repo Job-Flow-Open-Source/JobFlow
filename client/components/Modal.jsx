@@ -72,7 +72,7 @@ const Modal = (props) => {
     return (
       <div className="ModalPage">
         <div className="ModalBox">
-        <span class="close" onClick={() => {console.log('close clicked');props.closeModal()}}>&times;</span>
+        <span class="close" onClick={() => {console.log(`close clicked ${props.id}`); props.closeModal()}}>&times;</span>
           {/* <form className="modalForm" method="POST" action="/entry/edit"> */}
           <form className='modalForm'>
             <label className='ModalLabel' htmlFor="company">Company: </label>
@@ -104,7 +104,8 @@ const Modal = (props) => {
                 <option value="60">First Round</option>
                 <option value="80">Second Round</option>
                 <option value="100">Offer</option>
-            </select>            
+            </select>
+            <button>{props.id}</button>
             <div><a href='/'>Back</a></div>
           </form>
         </div>
