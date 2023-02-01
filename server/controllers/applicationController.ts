@@ -29,20 +29,17 @@ export const applicationController = {
       job_title,
       resume_name,
       link,
-      resume_id,
       user_id,
     } = req.body;
-
-    const resumeResult = await query('SELECT user_id, resume_name FROM resumes WHERE _id = $1', [resume_id]);
+    const resumeResult = await query('SELECT _id FROM resumes WHERE user_id = $1, resume_name = $2', [user_id, resume_name]);
     const resume = resumeResult.rows[0];
-    if (!resume || resume.resume_name !== resume_name || resume.user_id !== user_id) {
+    if (!resume) {
       return next({
-        log: 'Error occurred in addApplication middleware: resume must match user',
+        log: 'Error occurred in addApplication middleware: resume with specified name not found.',
         status: 409,
-        message: 'Resume must match user.'
+        message: 'Resume with specified name is not found in user\'s saved resumes.'
       });
     }
-
     await query('BEGIN', []);
     const addApplicationQuery = `
       INSERT INTO applications (
@@ -53,7 +50,7 @@ export const applicationController = {
     try {
       const { rows } = await query(addApplicationQuery, [
         user_id,
-        resume_id,
+        resume._id,
         coverletter_status,
         date_submitted,
         submission_method,
@@ -83,9 +80,7 @@ export const applicationController = {
       progress_status,
       company,
       job_title,
-      resume_name,
       link,
-      resume_id,
       application_id,
     } = req.body;
     await query('BEGIN', []);
@@ -96,9 +91,7 @@ export const applicationController = {
       progress_status,
       company,
       job_title,
-      resume_name,
-      link,
-      resume_id) = ($1, $2, $3, $4, $5, $6, $7, $8, $9) WHERE _id = $10 RETURNING *`;
+      link) = ($1, $2, $3, $4, $5, $6, $7) WHERE _id = $10 RETURNING *`;
     try {
       const { rows } = await query(updateApplicationQuery, [
         coverletter_status,
@@ -107,9 +100,7 @@ export const applicationController = {
         progress_status,
         company,
         job_title,
-        resume_name,
         link,
-        resume_id,
         application_id,
       ]);
       res.locals.updatedApplication = rows[0];
