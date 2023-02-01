@@ -10,6 +10,7 @@ const ApplicationView = (props) => {
   const [show, setShow] = useState(false);
   const [idx, setIdx] = useState(0);
   //   const [visible, setVisible] = useState('');
+  console.log('this is userInfo', props.userInfo);
 
   // Set up nav bar
   useEffect(() => {

@@ -14,7 +14,7 @@ const Modal = (props) => {
     const objData = Object.fromEntries(data.entries());
     console.log(objData);
     console.log('modal add/edit button clicked');
-    const appID = props.info._id;
+    // const appID = props.info._id;
     const {
       company,
       title,
@@ -29,7 +29,7 @@ const Modal = (props) => {
     //   // consider async and await
     //   if (props.modalState === 'add'){
     axios
-      .post(`http://localhost:3000/application/${props.userInfo._id}`, {
+      .post(`http://localhost:3000/application/`, {
         company: company,
         job_title: title,
         link: link,
@@ -38,6 +38,7 @@ const Modal = (props) => {
         date_submitted: submitDate,
         resume_name: Resume,
         coverletter_status: CoverLetter,
+        user_id: props.userInfo._id,
       })
       .then((res) => {
         console.log('Application added');
