@@ -273,6 +273,8 @@ button:hover {
 
 th {
   border-bottom: 1px solid black;
+  margin: 1em;
+  padding: 1em;
 }
 
 .taskName {
@@ -284,6 +286,10 @@ th {
 
 tr > div {
   width: 300px;
+}
+
+td {
+  padding: auto 8px auto 8px;
 }
 
 // .editBtn {
@@ -298,6 +304,84 @@ tr > div {
   font-size: 1em;
 }
 
-.nav{
-  display:flex;
+
+/* Navigation Bar */
+
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  padding-bottom: 16px;
+}
+
+.navPaths {
+  margin: 16px;
+  font-size: 1.25em;
+}
+
+
+
+/* Application table */
+
+.appContainer{
+  justify-content: top;
+}
+
+.appHeaders {
+  margin: 1em;
+  padding: 1em;
+  min-width: 50px;
+}
+
+
+
+/* The Modal (background) */
+.ModalPage {
+  // display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.ModalBox {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.ModalLabel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+.ModalInput {
+  // display: flex;
+  // flex-direction: column;
 }
