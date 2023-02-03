@@ -11,9 +11,12 @@ const AppEntry = (props) => {
         100 = offer 
             (accept or rejected)
     */
+
+  //props.appInfo.coverletter_status
+
   return (
     <tr>
-      <td> {props.index + 1} </td>
+      <td> {props.index + 4} </td>
       <td> {props.appInfo.company} </td>
       <td> {props.appInfo.job_title} </td>
       <td>
@@ -21,8 +24,8 @@ const AppEntry = (props) => {
       </td>
       <td> {props.appInfo.submission_method} </td>
       <td> {props.appInfo.date_submitted} </td>
-      <td> {props.appInfo.resume_id} </td>
-      <td> {props.appInfo.cover_letter_status} </td>
+      <td> {props.appInfo.resume_name} </td>
+      <td> No Cover Letter </td>
       <td>
         <progress
           id='file'
