@@ -5,19 +5,28 @@ import Modal from './Modal';
 import axios from 'axios';
 
 const ApplicationView = (props) => {
-  const [appInfo, setAppInfo] = useState([{ company: 'Google', _id: 1 }]); // insert a string to test
+  const [appInfo, setAppInfo] = useState([]); // insert a string to test
+  const [resumeInfo, setResumeInfo] = useState([]);
   const [modalState, setModalState] = useState('add');
   const [show, setShow] = useState(false);
   const [idx, setIdx] = useState(0);
   //   const [visible, setVisible] = useState('');
+  console.log('this is userInfo', props.userInfo);
 
-  // Set up nav bar
   useEffect(() => {
     props.showNav(true);
     console.log(props.userInfo);
+    refreshApps();
+    refreshResumes();
+  }, []);
 
+  useEffect(() => {
+    refreshResumes();
+  }, [appInfo]);
+
+  function refreshApps() {
     axios
-      .get(`http://localhost:3000/user/${props.userInfo._id}`)
+      .get(`http://localhost:3000/application/${props.userInfo._id}`)
       .then((res) => {
         console.log('data', res.data);
         setAppInfo(res.data);
@@ -25,7 +34,19 @@ const ApplicationView = (props) => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }
+
+  function refreshResumes() {
+    axios
+      .get(`http://localhost:3000/resume/${props.userInfo._id}`)
+      .then((res) => {
+        console.log('data', res.data);
+        setResumeInfo(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   // const showModal = (input) => {
   //     setShow(true);
@@ -46,6 +67,17 @@ const ApplicationView = (props) => {
         appInfo={appInfo[i]}
         setIdx={setIdx}
       />
+    );
+  }
+
+  const resumeArr = [];
+  for (let i = 0; i < resumeInfo.length; i++) {
+    resumeArr.push(
+      <div className='resumeEntries'>
+        <h5>Phone Screening:</h5>
+        <div>{resumeInfo[i].resume_name}</div>
+        <div>{resumeInfo[i].success_rate}</div>
+      </div>
     );
   }
 
@@ -83,6 +115,7 @@ const ApplicationView = (props) => {
       >
         Add Application
       </button>
+      <button>Add Resume</button>
       <div className='appTableContainer'>
         <table className='appTable'>
           <tr className='appHeaderRow'>
@@ -97,15 +130,14 @@ const ApplicationView = (props) => {
             <th classname='appHeaders'> Progess </th>
             <th classname='appHeaders'> Edit </th>
           </tr>
-          {arrOfApps}
           <tr>
             <td> 1 </td>
             <td> Google </td>
             <td> Senior Software Developer </td>
             <td> Link </td>
             <td> External Recruiter </td>
-            <td> 1/31/23 </td>
-            <td> Resume A </td>
+            <td> 2023-01-28T05:00:00.000Z </td>
+            <td> Mia_ver1 </td>
             <td> No Cover Letter </td>
             <td>
               {' '}
@@ -122,8 +154,8 @@ const ApplicationView = (props) => {
             <td> Full Stack Engineer </td>
             <td> Link </td>
             <td> Website </td>
-            <td> 1/31/23 </td>
-            <td> Resume A </td>
+            <td> 2023-01-30T14:25:00.000Z </td>
+            <td> Mia_ver2 </td>
             <td> Cover Letter </td>
             <td>
               {' '}
@@ -140,8 +172,8 @@ const ApplicationView = (props) => {
             <td> Back End Developer </td>
             <td> Link </td>
             <td> Internal Recruiter </td>
-            <td> 1/31/23 </td>
-            <td> Resume B </td>
+            <td> 2023-01-31T07:00:00.000Z </td>
+            <td> Mia_ver2 </td>
             <td> No Cover Letter </td>
             <td>
               {' '}
@@ -152,8 +184,10 @@ const ApplicationView = (props) => {
               <button>edit</button>
             </td>
           </tr>
+          {arrOfApps}
         </table>
       </div>
+      <div className='resumeContainer'>{resumeArr}</div>
       <Modal
         onClose={() => {
           return setShow(false);
@@ -165,6 +199,7 @@ const ApplicationView = (props) => {
         id={modalState}
         info={appInfo[idx]}
         userInfo={props.userInfo}
+        refreshApps={refreshApps}
       />
     </div>
   );

@@ -7,140 +7,138 @@ A0E4CB < mid top
 
 */
 
-$base-color: #CFF5E7;
-$second-color: #A0E4CB;
-$third-color: #59C1BD;
-$fourth-color: #0D4C92;
-$off-white: #FFF8F0;
+$base-color: #cff5e7;
+$second-color: #a0e4cb;
+$third-color: #59c1bd;
+$fourth-color: #0d4c92;
+$off-white: #fff8f0;
 
 /* universal reset of margins and padding */
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    font-family: 'ArialRounded', sans-serif; // no impact 
-    // background-color: $base-color;
-    background-image: linear-gradient(to bottom, $base-color, $second-color, $third-color, $fourth-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'ArialRounded', sans-serif; // no impact
+  // background-color: $base-color;
+  background-image: linear-gradient(
+    to bottom,
+    $base-color,
+    $second-color,
+    $third-color,
+    $fourth-color
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* absolute header and footer for all pages */
 
 header {
-    background-color: $base-color;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5px 0px;
-    font-size: 24px;
-    font-weight: 700;
-    font-family: 'ArialRounded', sans-serif;
-    color: $off-white;
-    z-index: 1;
-  }
+  background-color: $base-color;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 0px;
+  font-size: 24px;
+  font-weight: 700;
+  font-family: 'ArialRounded', sans-serif;
+  color: $off-white;
+  z-index: 1;
+}
 
-  header svg {
-    padding-right: 10px;
-    // width: 32;
-    // height: 32; 
-    // fill: currentColor;
-  }
+header svg {
+  padding-right: 10px;
+  // width: 32;
+  // height: 32;
+  // fill: currentColor;
+}
 
-  /* used to remove underline on redirect link back to home*/
-  header a {
-    text-decoration: none;
-    color: $fourth-color;
-  }
+/* used to remove underline on redirect link back to home*/
+header a {
+  text-decoration: none;
+  color: $fourth-color;
+}
 
-  footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 0px;
-    font-size: 12px;
-    font-family: 'ArialRounded', sans-serif;
-    // background-color: $fourth-color;
-    color: $off-white;
-  }
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 0px;
+  font-size: 12px;
+  font-family: 'ArialRounded', sans-serif;
+  // background-color: $fourth-color;
+  color: $off-white;
+}
 
+.loginPage {
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  // // height: 850px;
+  // height: auto;
+}
 
-  .loginPage {
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
-    // // height: 850px;
-    // height: auto;
-  }
+/* login page */
 
-  /* login page */
+.loginBox {
+  // background-color: $third-color;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-color: black;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2em 2em 1.5em 2em;
+  margin-bottom: 10px;
+}
 
-  .loginBox {
-    // background-color: $third-color;
-    background-color: rgba(255, 255, 255, 0.5);
-    border-color: black;
-    border-width: 1px;
-    border-style: solid;
-    border-radius: 3px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2em 2em 1.5em 2em;
-    margin-bottom: 10px;
-  }
-  
-  .loginForm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  input::placeholder {
-    overflow: visible;
-  }
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .formInfo {
-    display: flex;
-    flex-direction: column;
-    margin: 2px auto;
-    padding: 4px;
-    background-color: $off-white;
-    border: 1px solid;
-    border-radius: 3px;
-  }
-  
-  .loginBtn {
-    margin: 5px auto;
-    padding: auto 3px;
-    width: 100%;
-    color: $off-white;
-    background-color: $fourth-color;
-  }
+input::placeholder {
+  overflow: visible;
+}
 
-  .loginBox a {
-    font-size: 1em;
-    margin: .25em;
-    // color: $off-white;
-    color: $fourth-color;
-  }
+.formInfo {
+  display: flex;
+  flex-direction: column;
+  margin: 2px auto;
+  padding: 4px;
+  background-color: $off-white;
+  border: 1px solid;
+  border-radius: 3px;
+}
 
+.loginBtn {
+  margin: 5px auto;
+  padding: auto 3px;
+  width: 100%;
+  color: $off-white;
+  background-color: $fourth-color;
+}
 
+.loginBox a {
+  font-size: 1em;
+  margin: 0.25em;
+  // color: $off-white;
+  color: $fourth-color;
+}
 
-
-
-
-
-
-
-  /* signup page */
+/* signup page */
 
 .signupPage {
   // display: flex;
@@ -201,7 +199,6 @@ header {
   justify-content: center;
 }
 
-
 .homeHeader {
   // margin-top: 25px;
   display: flex;
@@ -238,7 +235,6 @@ header {
   justify-content: center;
 }
 
-
 .buttons {
   display: flex;
   flex-direction: rows;
@@ -249,21 +245,20 @@ header {
     color: $off-white;
     background-color: $fourth-color;
     // margin: auto 5px auto;
-    padding: .5em 1em;
+    padding: 0.5em 1em;
     font-family: 'Rubik', sans-serif;
-    border-radius: .5em;
+    border-radius: 0.5em;
     width: 175px;
   }
 }
 
 button:hover {
-  background-color: #B73E3E;
+  background-color: #b73e3e;
 }
 
 // br {
 //   height: 5px;
 // }
-
 
 /* Task List Table */
 
@@ -278,7 +273,7 @@ th {
 }
 
 .taskName {
-  display : flex;
+  display: flex;
   flex-direction: row;
   justify-content: flex-start;
   margin: auto auto auto 5px;
@@ -304,9 +299,7 @@ td {
   font-size: 1em;
 }
 
-
 /* Navigation Bar */
-
 
 .nav {
   display: flex;
@@ -320,11 +313,9 @@ td {
   font-size: 1.25em;
 }
 
-
-
 /* Application table */
 
-.appContainer{
+.appContainer {
   justify-content: top;
 }
 
@@ -333,8 +324,6 @@ td {
   padding: 1em;
   min-width: 50px;
 }
-
-
 
 /* The Modal (background) */
 .ModalPage {
@@ -346,8 +335,8 @@ td {
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
 /* Modal Content/Box */
@@ -380,8 +369,19 @@ td {
   justify-content: space-between;
 }
 
-
 .ModalInput {
   // display: flex;
   // flex-direction: column;
+}
+
+.resumeContainer {
+  background-color: blueviolet;
+  margin-top: 3rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+.resumeEntries {
+  background-color: #3f83d1;
+  margin: 1rem;
 }

@@ -13,8 +13,8 @@ const Modal = (props) => {
     const data = new FormData(e.target);
     const objData = Object.fromEntries(data.entries());
     console.log(objData);
-    console.log('modal add/edit button clicked');
-    const appID = props.info._id;
+    console.log('this is userInfo from Modal', props.userInfo);
+    // const appID = props.info._id;
     const {
       company,
       title,
@@ -22,40 +22,55 @@ const Modal = (props) => {
       progress,
       submission,
       submitDate,
-      Resume,
-      CoverLetter,
+      resume,
+      coverletter,
     } = objData;
-
+    console.log('this is Resume', resume);
     //   // consider async and await
-    //   if (props.modalState === 'add'){
-    axios
-      .post(`http://localhost:3000/application/${props.userInfo._id}`, {
-        company: company,
-        job_title: title,
-        link: link,
-        progress_status: progress,
-        submission_method: submission,
-        date_submitted: submitDate,
-        resume_name: Resume,
-        coverletter_status: CoverLetter,
-      })
-      .then((res) => {
-        console.log('Application added');
-      })
-      .catch((err) => {
-        console.log('Add application had an error');
-      });
-    //   } else{
-    //     axios.patch('/editPost', {
-    //       company,
-    //       name,
-    //       date,
-    //       resume
-    //     })
-    //     .then(res => {
-    //       console.log("Updated the data")
-    //     })
-    //   }
+    if (props.id === 'add') {
+      axios
+        .post(`http://localhost:3000/application/`, {
+          company: company,
+          job_title: title,
+          link: link,
+          progress_status: progress,
+          submission_method: submission,
+          date_submitted: submitDate,
+          resume_name: resume,
+          coverletter_status: coverletter,
+          user_id: props.userInfo._id,
+        })
+        .then((res) => {
+          console.log('Application added');
+          props.refreshApps();
+        })
+        .catch((err) => {
+          console.log('Add application had an error');
+        });
+    }
+    if (props.id === 'edit') {
+      console.log('we are editting');
+      axios
+        .patch(`http://localhost:3000/application/`, {
+          company: company,
+          job_title: title,
+          link: link,
+          progress_status: progress,
+          submission_method: submission,
+          date_submitted: submitDate,
+          resume_name: resume,
+          coverletter_status: coverletter,
+          user_id: props.userInfo._id,
+          application_id: props.info._id,
+        })
+        .then((res) => {
+          console.log('Application updated');
+          props.refreshApps();
+        })
+        .catch((err) => {
+          console.log('Updated application had an error');
+        });
+    }
   }
 
   // pick up specific application details based on ID
@@ -111,6 +126,7 @@ const Modal = (props) => {
             id='title'
             name='title'
             type='text'
+            defaultValue={props.id === 'edit' ? props.info.job_title : ''}
           ></input>
           <label className='ModalLabel' htmlFor='link'>
             Link:{' '}
@@ -120,11 +136,19 @@ const Modal = (props) => {
             id='link'
             name='link'
             type='text'
+            defaultValue={props.id === 'edit' ? props.info.link : ''}
           ></input>
           <label className='ModalLabel' htmlFor='submission'>
             Submission Method:
           </label>
-          <select className='ModalInput' name='submission' id='submission'>
+          <select
+            className='ModalInput'
+            name='submission'
+            id='submission'
+            defaultValue={
+              props.id === 'edit' ? props.info.submission_method : ''
+            }
+          >
             <option value='Company Site'>Company Site</option>
             <option value='Internal Recruiter'>Internal Recruiter</option>
             <option value='External Recruiter'>External Recruiter</option>
@@ -139,30 +163,58 @@ const Modal = (props) => {
             id='submitDate'
             name='submitDate'
             type='text'
+            defaultValue={props.id === 'edit' ? props.info.date_submitted : ''}
           ></input>
-          <label className='ModalLabel' htmlFor='Resume'>
+          <label className='ModalLabel' htmlFor='resume'>
             Resume name:{' '}
           </label>
-          <input
+          {/* <input
             className='ModalInput'
             id='Resume'
             name='Resume'
             type='text'
-          ></input>
+          ></input> */}
+          <select
+            className='ModalInput'
+            name='resume'
+            id='resume'
+            defaultValue={props.id === 'edit' ? props.info.resume : ''}
+          >
+            <option value='Mia_ver1'>Mia_ver1</option>
+            <option value='Mia_ver2'>Mia_ver2</option>
+          </select>
+
           <label className='ModalLabel' htmlFor='coverletter'>
             Cover Letter:{' '}
           </label>
-          <input
+          {/* <input
             className='ModalInput'
             id='coverletter'
             name='coverletter'
-            type='text'
-          ></input>
+            type='text' 
+          ></input> */}
+          <select
+            className='ModalInput'
+            name='coverletter'
+            id='coverletter'
+            defaultValue={
+              props.id === 'edit' ? props.info.coverletter_status : ''
+            }
+          >
+            <option value='No Cover Letter'>No Cover Letter</option>
+            <option value='Standard Letter'>Standard Letter</option>
+            <option value='Custom Letter'>Custom Letter</option>
+          </select>
 
           <label className='ModalLabel' htmlFor='progress'>
             Progress Status:
           </label>
-          <select className='ModalInput' name='progress' id='progress'>
+          <select
+            className='ModalInput'
+            name='progress'
+            id='progress'
+            defaultValue={props.id === 'edit' ? props.info.progress_status : ''}
+          >
             <option value={0}>Started Application</option>
             <option value={20}>Submitted Application</option>
             <option value={40}>Phone Screening</option>
